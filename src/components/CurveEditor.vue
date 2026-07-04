@@ -178,6 +178,10 @@ function onUp(e: PointerEvent) {
 
 <style scoped>
 .editor {
+	flex: 1;
+	min-height: 0;
+	display: flex;
+	flex-direction: column;
 	border: 1px solid var(--tq-color-border-subtle, rgba(255, 255, 255, 0.08));
 	border-radius: var(--tq-radius-pane, 8px);
 	background: var(--tq-color-surface, rgba(255, 255, 255, 0.04));
@@ -208,7 +212,8 @@ function onUp(e: PointerEvent) {
 
 .graph {
 	width: 100%;
-	height: 148px;
+	flex: 1;
+	min-height: 84px;
 	display: block;
 	touch-action: none;
 	user-select: none;

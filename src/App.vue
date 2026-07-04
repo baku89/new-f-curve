@@ -75,29 +75,33 @@ useEventListener(window, 'keydown', (e: KeyboardEvent) => {
 				</div>
 			</header>
 
-			<CircleStage />
+			<div class="body">
+				<div class="preview">
+					<CircleStage />
+				</div>
 
-			<div class="editors">
-				<CurveEditor
-					level="pos"
-					title="Position"
-					color="var(--tq-color-accent, #a2f517)"
-				/>
-				<CurveEditor
-					level="vel"
-					title="Velocity"
-					color="var(--tq-color-info, #3e63dd)"
-				/>
-				<CurveEditor
-					level="acc"
-					title="Acceleration"
-					color="var(--tq-color-warning, #ffc53d)"
-				/>
-				<CurveEditor
-					level="jerk"
-					title="Jerk"
-					color="var(--tq-color-error, #e5484d)"
-				/>
+				<div class="editors">
+					<CurveEditor
+						level="pos"
+						title="Position"
+						color="var(--tq-color-accent, #a2f517)"
+					/>
+					<CurveEditor
+						level="vel"
+						title="Velocity"
+						color="var(--tq-color-info, #3e63dd)"
+					/>
+					<CurveEditor
+						level="acc"
+						title="Acceleration"
+						color="var(--tq-color-warning, #ffc53d)"
+					/>
+					<CurveEditor
+						level="jerk"
+						title="Jerk"
+						color="var(--tq-color-error, #e5484d)"
+					/>
+				</div>
 			</div>
 		</div>
 	</TweeqProvider>
@@ -105,9 +109,11 @@ useEventListener(window, 'keydown', (e: KeyboardEvent) => {
 
 <style scoped>
 .app {
-	max-width: 760px;
+	box-sizing: border-box;
+	max-width: 1280px;
+	min-height: 100dvh;
 	margin: 0 auto;
-	padding: 20px 20px 48px;
+	padding: 18px 22px 22px;
 	display: flex;
 	flex-direction: column;
 	gap: var(--tq-gap-section, 16px);
@@ -135,9 +141,43 @@ h1 {
 	gap: var(--tq-gap-related, 6px);
 }
 
+/* Landscape: animation preview on the left, the four graphs stacked on the
+   right, together filling the viewport for a 16:9-friendly composition. */
+.body {
+	flex: 1;
+	min-height: 0;
+	display: flex;
+	gap: 22px;
+	align-items: stretch;
+}
+
+.preview {
+	flex: 1 1 42%;
+	min-width: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .editors {
+	flex: 1 1 58%;
+	min-width: 0;
 	display: flex;
 	flex-direction: column;
 	gap: var(--tq-gap-related, 8px);
+}
+
+@media (max-width: 760px) {
+	.app {
+		min-height: 0;
+	}
+
+	.body {
+		flex-direction: column;
+	}
+
+	.editors .editor {
+		min-height: 128px;
+	}
 }
 </style>

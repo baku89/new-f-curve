@@ -32,7 +32,8 @@ const cx = computed(() =>
 <style scoped>
 .stage {
 	width: 100%;
-	height: 120px;
+	height: auto;
+	max-height: 100%;
 	display: block;
 	overflow: visible;
 }
