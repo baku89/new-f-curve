@@ -11,7 +11,6 @@ import {provide} from 'vue'
 
 import CircleStage from './components/CircleStage.vue'
 import CurveEditor from './components/CurveEditor.vue'
-import ThemePanel from './components/ThemePanel.vue'
 import {usePlayback} from './composables/usePlayback'
 import {ModelKey, PlaybackKey} from './keys'
 import {createEasingModel} from './model/easing'
@@ -100,8 +99,6 @@ useEventListener(window, 'keydown', (e: KeyboardEvent) => {
 					color="var(--tq-color-error, #e5484d)"
 				/>
 			</div>
-
-			<ThemePanel />
 		</div>
 	</TweeqProvider>
 </template>
