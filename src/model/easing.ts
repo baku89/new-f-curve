@@ -85,6 +85,8 @@ export interface EasingModel {
 	vel: Ref<number[]>
 	acc: Ref<number[]>
 	jerk: Ref<number[]>
+	/** True between beginDraw()/endDraw() — editors freeze their y-scale while set. */
+	drawing: Ref<boolean>
 	get(level: Level): number[]
 	beginDraw(level: Level): void
 	paint(t0: number, y0: number, t1: number, y1: number): void
@@ -133,6 +135,7 @@ export function createEasingModel(): EasingModel {
 	const vel = ref<number[]>([])
 	const acc = ref<number[]>([])
 	const jerk = ref<number[]>([])
+	const drawing = ref(false)
 
 	// Authoritative sample array — always corresponds to `level.value`.
 	let src: number[] = []
@@ -156,6 +159,7 @@ export function createEasingModel(): EasingModel {
 	}
 
 	function beginDraw(l: Level) {
+		drawing.value = true
 		level.value = l
 		src = get(l).slice()
 	}
@@ -177,6 +181,8 @@ export function createEasingModel(): EasingModel {
 	}
 
 	function endDraw() {
+		// Ended before the rescale below, so the range-fit watchers refit once here.
+		drawing.value = false
 		// On release, scale the drawn graph so its own area = 1 (per spec).
 		// pos is pinned instead, so it is left untouched.
 		if (level.value !== 'pos') {
@@ -196,5 +202,5 @@ export function createEasingModel(): EasingModel {
 
 	reset()
 
-	return {level, pos, vel, acc, jerk, get, beginDraw, paint, endDraw, reset}
+	return {level, pos, vel, acc, jerk, drawing, get, beginDraw, paint, endDraw, reset}
 }

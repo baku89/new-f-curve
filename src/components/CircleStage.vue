@@ -8,10 +8,10 @@ import {sampleAt} from '../model/easing'
 const model = inject(ModelKey)!
 const playback = inject(PlaybackKey)!
 
-const LEFT = 190
-const RIGHT = 810
-const CY = 210
-const R = 88
+const LEFT = 100
+const RIGHT = 900
+const CY = 180
+const R = 76
 
 // pos is pinned to [0,1] at the ends but can overshoot in between / at release,
 // so the moving dot may briefly travel past a target — that's the overshoot cue.
@@ -21,7 +21,7 @@ const cx = computed(() =>
 </script>
 
 <template>
-	<svg class="stage" viewBox="0 0 1000 420" preserveAspectRatio="xMidYMid meet">
+	<svg class="stage" viewBox="0 0 1000 360" preserveAspectRatio="xMidYMid meet">
 		<line class="track" :x1="LEFT" :y1="CY" :x2="RIGHT" :y2="CY" />
 		<circle class="target" :cx="LEFT" :cy="CY" :r="R" />
 		<circle class="target" :cx="RIGHT" :cy="CY" :r="R" />

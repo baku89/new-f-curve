@@ -52,10 +52,12 @@ function fit(arr: number[]): [number, number] {
 }
 
 let dragging = false
+// Refit the y-scale only when nothing is being drawn — a stroke on any editor
+// (this one or another) freezes every graph's scale so it doesn't jump mid-drag.
 watch(
 	data,
 	d => {
-		if (!dragging) range.value = fit(d)
+		if (!model.drawing.value) range.value = fit(d)
 	},
 	{immediate: true}
 )

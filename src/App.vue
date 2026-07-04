@@ -155,15 +155,16 @@ h1 {
 }
 
 .preview {
-	flex: 1 1 46%;
+	flex: 1 1 54%;
 	min-width: 0;
+	padding: clamp(16px, 4vw, 48px);
 	display: flex;
 	align-items: stretch;
 	justify-content: center;
 }
 
 .editors {
-	flex: 1 1 54%;
+	flex: 1 1 46%;
 	min-width: 0;
 	min-height: 0;
 	display: flex;
