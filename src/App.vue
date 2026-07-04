@@ -162,6 +162,7 @@ h1 {
 .editors {
 	flex: 1 1 58%;
 	min-width: 0;
+	min-height: 0;
 	display: flex;
 	flex-direction: column;
 	gap: var(--tq-gap-related, 8px);
