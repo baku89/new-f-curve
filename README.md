@@ -1,4 +1,4 @@
-# f-curve
+# New F-Curve
 
 A minimal, direct-manipulation easing editor. A filled dot travels left → right
 over a fixed duration; you shape the motion by **drawing** — not with Bézier

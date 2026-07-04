@@ -47,7 +47,7 @@ useEventListener(window, 'keydown', (e: KeyboardEvent) => {
 	<TweeqProvider>
 		<div class="app">
 			<header class="head">
-				<h1>f-curve</h1>
+				<h1>New F-Curve</h1>
 				<div class="transport">
 					<InputNumber
 						v-model="duration"
@@ -111,12 +111,15 @@ useEventListener(window, 'keydown', (e: KeyboardEvent) => {
 .app {
 	box-sizing: border-box;
 	max-width: 1280px;
-	min-height: 100dvh;
+	/* Cap to the viewport so the graphs are forced to shrink to fit rather
+	   than growing the page (min-height would let them overflow). */
+	height: 100dvh;
 	margin: 0 auto;
 	padding: 18px 22px 22px;
 	display: flex;
 	flex-direction: column;
 	gap: var(--tq-gap-section, 16px);
+	overflow: hidden;
 }
 
 .head {
@@ -152,15 +155,15 @@ h1 {
 }
 
 .preview {
-	flex: 1 1 42%;
+	flex: 1 1 46%;
 	min-width: 0;
 	display: flex;
-	align-items: center;
+	align-items: stretch;
 	justify-content: center;
 }
 
 .editors {
-	flex: 1 1 58%;
+	flex: 1 1 54%;
 	min-width: 0;
 	min-height: 0;
 	display: flex;
@@ -170,7 +173,8 @@ h1 {
 
 @media (max-width: 760px) {
 	.app {
-		min-height: 0;
+		height: auto;
+		overflow: visible;
 	}
 
 	.body {
