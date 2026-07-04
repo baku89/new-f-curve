@@ -1,0 +1,53 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+	height: 100%;
+	margin: 0;
+}
+
+/* Tweeq's --tq-rem is 12px (numeric theme tokens are serialised with a px
+   suffix). Pin the root font-size to it so the CSS `rem` unit matches tweeq's
+   own scale throughout the app. */
+html {
+	font-size: 12px;
+}
+
+/* Form-control reset. Tweeq styles its inputs via .Tq* classes but assumes the
+   host has stripped the native chrome (its own reset lives in the built
+   global.css, which we don't get when consuming tweeq as source) — without this
+   macOS/Chrome draws a bevelled border on <button>/<input>. */
+button,
+input,
+select,
+textarea {
+	margin: 0;
+	font: inherit;
+	color: inherit;
+	appearance: none;
+	-webkit-appearance: none;
+}
+
+button {
+	padding: 0;
+	border: none;
+	background: none;
+	cursor: pointer;
+}
+
+/* Tweeq's theme store injects its --tq-* custom properties onto <body>, so we
+   pull the base skin (font, size, background, text colour) straight from it. */
+body {
+	font-family: var(--tq-font-ui, system-ui, -apple-system, sans-serif);
+	font-size: var(--tq-rem, 12px);
+	line-height: 1;
+	background: var(--tq-color-background, #111);
+	color: var(--tq-color-text, #e7e7ea);
+	-webkit-font-smoothing: antialiased;
+	overscroll-behavior: none;
+}
